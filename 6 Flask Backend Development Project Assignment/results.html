@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Matcher - Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Light gray background color */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333; /* Dark gray text color */
+            padding: 20px; /* Add some padding for spacing */
+        }
+
+        ul {
+            list-style-type: none; /* Remove default list styles */
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff; /* White background color for list items */
+            padding: 10px; /* Add padding for spacing */
+            border-bottom: 1px solid #ccc; /* Add border bottom to separate list items */
+        }
+
+        li:last-child {
+            border-bottom: none; /* Remove border bottom from the last list item */
+        }
+    </style>
+</head>
+<body>
+    <h1>Matches Found:</h1>
+    <ul>
+        {% for match in matches %}
+            <li>{{ match }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Matcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Light gray background color */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333; /* Dark gray text color */
+            padding: 20px; /* Add some padding for spacing */
+        }
+
+        ul {
+            list-style-type: none; /* Remove default list styles */
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Dark gray background color for the navigation */
+            overflow: hidden; /* Ensure that the navigation does not overflow */
+        }
+
+        li {
+            float: left; /* Float the list items to create horizontal navigation */
+        }
+
+        li a {
+            display: block;
+            color: white; /* White text color for links */
+            text-align: center;
+            padding: 14px 16px; /* Add padding to the links */
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        li a:hover {
+            background-color: #555; /* Darken the background color of links on hover */
+        }
+
+        form {
+            background-color: #fff; /* White background color for the form */
+            padding: 20px; /* Add some padding for spacing */
+            margin: 20px; /* Add margin to separate from other content */
+            border-radius: 8px; /* Add rounded corners to the form */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensure that padding and border are included in the width */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff; /* Blue submit button */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue color on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Regex Matcher</h1>
+    <ul>
+        <li><a href="/">Regex Matcher</a></li>
+        <li><a href="/validate-email">Email Validation</a></li>
+    </ul>
+    <form action="/results" method="post">
+        <label for="test_string">Test String:</label><br>
+        <input type="text" id="test_string" name="test_string"><br>
+        <label for="regex_pattern">Regex Pattern:</label><br>
+        <input type="text" id="regex_pattern" name="regex_pattern"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

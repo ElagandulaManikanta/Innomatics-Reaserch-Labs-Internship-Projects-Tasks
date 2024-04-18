@@ -1,25 +1,43 @@
+import streamlit as st
 import pandas as pd
-from flask import Flask, render_template, request
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import joblib
 
-df = pd.read_csv(r"C:\Users\Manikanta\Data Science Innomatics\Internship Projects - Tasks\Search Engine Project\Dataset\cleaned_subtitles")
+def load_data(csv_file):
+    data = pd.read_csv(csv_file)
+    return data
 
-# Fill NaN values in 'Movies&WebSeries' column with an empty string
-df['Movies&WebSeries'].fillna('', inplace=True)
+def load_models():
+    count_vectorizer = joblib.load('C:\Users\Manikanta\Data Science Innomatics\Internship Projects - Tasks\Search Engine Project\webapp\models\count_vectorizer.joblib')
+    tfidf_transformer = joblib.load('C:\Users\Manikanta\Data Science Innomatics\Internship Projects - Tasks\Search Engine Project\webapp\models\tfidf_transformer.joblib')
+    tfidf_matrix = joblib.load('C:\Users\Manikanta\Data Science Innomatics\Internship Projects - Tasks\Search Engine Project\webapp\models\tfidf_matrix.joblib')
+    return count_vectorizer, tfidf_transformer, tfidf_matrix
 
-app = Flask(__name__)
+def retrieve_similar_documents(query, count_vectorizer, tfidf_transformer, tfidf_matrix, data, top_n=5):
+    query_vector = count_vectorizer.transform([query])
+    query_tfidf = tfidf_transformer.transform(query_vector)
+    similarity_scores = cosine_similarity(query_tfidf, tfidf_matrix)
+    top_indices = similarity_scores.argsort()[0][::-1]
+    retrieved_documents = [data['Subtitles'][idx] for idx in top_indices[:top_n]]
+    
+    return retrieved_documents
 
-@app.route("/", methods=["GET", "POST"])
-def search():
-    if request.method == "POST":
-        search_text = request.form.get("search_text")
-        if search_text:
-            # Filter the DataFrame and handle NaN values in 'Movies&WebSeries' column
-            results = df[df['Movies&WebSeries'].str.contains(search_text, case=False, na=False)]['Subtitles'].tolist()
-            return render_template("results.html", search_text=search_text, results=results)
-        else:
-            return render_template("results.html", search_text="Nothing", results=None)
-    else:
-        return render_template("index.html")
+def main():
+    st.title('Search Engine System')
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    data = load_data('C:\Users\Manikanta\Data Science Innomatics\Internship Projects - Tasks\Search Engine Project\Dataset\Search-Engine')
+
+    count_vectorizer, tfidf_transformer, tfidf_matrix = load_models()
+
+    query = st.text_input('Enter your query:', '')
+
+    if st.button('Search'):
+        if query:
+            retrieved_documents = retrieve_similar_documents(query, count_vectorizer, tfidf_transformer, tfidf_matrix, data)
+            st.subheader('Top 5 documents similar to the query:')
+            for i, doc in enumerate(retrieved_documents, 1):
+                st.write(f"Document {i}: {doc}")
+
+if __name__ == '__main__':
+    main()

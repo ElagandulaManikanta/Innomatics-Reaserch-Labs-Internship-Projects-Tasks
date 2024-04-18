@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Subtitle - Search Engine</title>
+    <style>
+        body {
+            background-color: #1abc9c; /* Turquoise background color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: #fff; /* White text color */
+        }
+
+        .title-box {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Increased shadow effect */
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px); /* Adjusted width */
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            color: #333; /* Dark text color */
+        }
+
+        button[type="submit"] {
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2ecc71; /* Emerald green button color */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Transition for background color change */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #27ae60; /* Darker green color on hover */
+        }
+
+        /* Styling for link */
+        a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #f39c12; /* Yellow color on hover */
+        }
+
+        /* Author styles */
+        .author {
+            color: #ccc;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-box">
+        <h1>Movie Subtitle - Search Engine</h1>
+    </div>
+    <div class="container">
+        <form method="POST">
+            <input type="text" name="search_text" placeholder="Enter Movie Name">
+            <button type="submit">Search</button>
+        </form>
+        <div class="author">Created by Manikanta Guptha</div>
+    </div>
+</body>
+</html>
+
